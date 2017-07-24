@@ -1,4 +1,4 @@
-from zomato.core.modules.fundamentals.base_fundamental import BaseFundamental
+from core.modules.Fundamentals.base_fundamental import BaseFundamental
 
 
 class Cuisines(BaseFundamental):
