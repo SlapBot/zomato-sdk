@@ -1,11 +1,12 @@
 from core.modules.Fundamentals.base_fundamental import BaseFundamental
 from collections.abc import Sequence
+from core.modules.Fundamentals.location_details import LocationDetails
 from core.modules.Fundamentals.collections import Collections
 from core.modules.Fundamentals.cuisines import Cuisines
 from core.modules.Fundamentals.establishments import Establishments
 
 
-class Cities(BaseFundamental, Sequence):
+class Locations(BaseFundamental, Sequence):
     def __len__(self):
         return len(self.location_suggestions)
 
@@ -28,41 +29,31 @@ class Cities(BaseFundamental, Sequence):
 class LocationSuggestion:
     def __init__(self, location_suggestion, request):
         self.r = request
-        self.id = location_suggestion['id']
-        self.name = location_suggestion['name']
+        self.entity_type = location_suggestion['entity_type']
+        self.entity_id = location_suggestion['entity_id']
+        self.title = location_suggestion['title']
+        self.latitude = location_suggestion['latitude']
+        self.longitude = location_suggestion['longitude']
+        self.city_id = location_suggestion['city_id']
+        self.city_name = location_suggestion['city_name']
         self.country_id = location_suggestion['country_id']
         self.country_name = location_suggestion['country_name']
-        self.should_experiment_with = location_suggestion['should_experiment_with']
-        self.discovery_enabled = location_suggestion['discovery_enabled']
-        self.has_new_ad_format = location_suggestion['has_new_ad_format']
-        self.is_state = location_suggestion['is_state']
-        self.state_id = location_suggestion['state_id']
-        self.state_name = location_suggestion['state_name']
-        self.state_code = location_suggestion['state_code']
 
     def get_collections(self):
-        data, headers = self.r.request('collections', payload={'city_id': self.id})
+        data, headers = self.r.request('collections', payload={'city_id': self.city_id})
         return Collections(data, headers, self.r)
 
     def get_cuisines(self):
-        data, headers = self.r.request('cuisines', payload={'city_id': self.id})
+        data, headers = self.r.request('cuisines', payload={'city_id': self.city_id})
         return Cuisines(data, headers, self.r)
 
     def get_establishments(self):
-        data, headers = self.r.request('establishments', payload={'city_id': self.id})
+        data, headers = self.r.request('establishments', payload={'city_id': self.city_id})
         return Establishments(data, headers, self.r)
 
-
-class LocationSuggestions(Sequence):
-    def __len__(self):
-        return len(self.location_suggestions)
-
-    def __getitem__(self, index):
-        return self.location_suggestions[index]
-
-    def __init__(self, location_suggestions):
-        self.location_suggestions = []
-        self.process_location_suggestions(location_suggestions)
-
-    def process_location_suggestions(self, location_suggestions):
-        pass
+    def get_location_details(self):
+        data, headers = self.r.request('location_details', payload={
+            'entity_id': self.entity_id,
+            'entity_type': self.entity_type
+        })
+        return LocationDetails(data, headers, self.r)
