@@ -1,4 +1,4 @@
-from Stephanie.local_libs.pyzomato.core.requester import Requester
+from core.requester import Requester
 
 
 class Base:

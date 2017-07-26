@@ -1,7 +1,10 @@
 from core.modules.Fundamentals.base_fundamental import BaseFundamental
 from collections.abc import Sequence
 from core.modules.Fundamentals.locations import LocationSuggestion
+from core.modules.Fundamentals.daily_menu import DailyMenu
+from core.modules.Fundamentals.reviews import Reviews
 # Causing feedback loop, create a utility file with LocationSuggestionRestaurants and so on and import them as needed.
+
 
 class LocationDetails(BaseFundamental, Sequence):
     def __len__(self):
@@ -61,7 +64,7 @@ class BestRatedRestaurant:
         self.id = restaurant['id']
         self.name = restaurant['name']
         self.url = restaurant['url']
-        self.location = Location(restaurant['location'])
+        self.location = Location(restaurant['location'], self.r)
         self.switch_to_order_menu = restaurant['switch_to_order_menu']
         self.cuisines = restaurant['cuisines']
         self.average_cost_for_two = restaurant['average_cost_for_two']
@@ -79,3 +82,11 @@ class BestRatedRestaurant:
         self.has_table_booking = restaurant['has_table_booking']
         self.events_url = restaurant['events_url']
         self.r = request
+
+    def get_daily_menu(self):
+        data, headers = self.r.request('daily_menu', payload={'res_id': self.id})
+        return DailyMenu(data, headers, self.r)
+
+    def get_reviews(self):
+        data, headers = self.r.request('reviews', payload={'res_id': self.id})
+        return Reviews(data, headers, self.r)

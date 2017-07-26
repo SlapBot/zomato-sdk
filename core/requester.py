@@ -1,5 +1,5 @@
 import requests
-from Stephanie.local_libs.pyzomato.core.endpoint_manager import EndpointManager
+from core.endpoint_manager import EndpointManager
 
 
 class Requester(EndpointManager):
