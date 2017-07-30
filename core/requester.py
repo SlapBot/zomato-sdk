@@ -23,13 +23,17 @@ class Requester(EndpointManager):
         else:
             url = self.endpoints[endpoint_name]
         self.r = requests.get(url, params=payload, headers=self.headers)
-        # self.check_for_exceptions(self.r)
+        self.check_for_exceptions(self.r)
         if raw:
             return self.r
-        return self.r.json()
+        return self.r.json(), self.r.headers
 
     @staticmethod
     def check_for_exceptions(request):
         status_code = request.status_code
-        if status_code != 200:
+        if status_code == 400:
+            raise ConnectionError("Invalid input")
+        elif status_code == 404:
+            raise ConnectionError("Invalid API KEY")
+        elif status_code != 200:
             raise ConnectionError("The website couldn't be retrieved.")

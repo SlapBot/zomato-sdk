@@ -1,6 +1,6 @@
 class EndpointManager:
     def __init__(self):
-        self.base_url = "https://developers.zomato.com/api/v2.1"
+        self.base_url = "https://developers.zomato-sdk.com/api/v2.1"
         self.endpoints = self.get_endpoints()
 
     def get_endpoints(self):

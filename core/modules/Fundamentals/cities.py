@@ -51,18 +51,3 @@ class LocationSuggestion:
     def get_establishments(self):
         data, headers = self.r.request('establishments', payload={'city_id': self.id})
         return Establishments(data, headers, self.r)
-
-
-class LocationSuggestions(Sequence):
-    def __len__(self):
-        return len(self.location_suggestions)
-
-    def __getitem__(self, index):
-        return self.location_suggestions[index]
-
-    def __init__(self, location_suggestions):
-        self.location_suggestions = []
-        self.process_location_suggestions(location_suggestions)
-
-    def process_location_suggestions(self, location_suggestions):
-        pass

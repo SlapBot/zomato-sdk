@@ -1,9 +1,8 @@
 from core.modules.Fundamentals.base_fundamental import BaseFundamental
 from collections.abc import Sequence
-from core.modules.Fundamentals.locations import LocationSuggestion
+from core.modules.Fundamentals.location_suggestion import LocationSuggestion
 from core.modules.Fundamentals.daily_menu import DailyMenu
 from core.modules.Fundamentals.reviews import Reviews
-# Causing feedback loop, create a utility file with LocationSuggestionRestaurants and so on and import them as needed.
 
 
 class LocationDetails(BaseFundamental, Sequence):
