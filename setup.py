@@ -27,7 +27,6 @@ setup(
         'Development Status :: 3 - Alpha',
 
         'Environment :: Web Environment',
-        'Environment :: Console Environment',
 
         'Operating System :: OS Independent',
 

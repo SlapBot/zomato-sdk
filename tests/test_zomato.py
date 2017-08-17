@@ -4,7 +4,7 @@ import unittest
 class TestZomato(unittest.TestCase):
     @staticmethod
     def do_init():
-        from zomato.zomato import Zomato
+        from zomato import Zomato
         z = Zomato(API_KEY="e74778cd3728858df3578092ecea02cf")
         return z
 
