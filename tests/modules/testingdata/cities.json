@@ -1,0 +1,20 @@
+{
+    "location_suggestions": [
+        {
+            "id": 5,
+            "name": "Pune",
+            "country_id": 1,
+            "country_name": "India",
+            "should_experiment_with": 0,
+            "discovery_enabled": 0,
+            "has_new_ad_format": 1,
+            "is_state": 0,
+            "state_id": 0,
+            "state_name": "",
+            "state_code": ""
+        }
+    ],
+    "status": "success",
+    "has_more": 0,
+    "has_total": 0
+}
