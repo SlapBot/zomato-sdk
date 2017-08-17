@@ -44,8 +44,8 @@ All of them takes parameters as listed in Documentation section of Zomato API : 
 
 The best thing about it is that everything is modular, and connected to each other, letting you do things like:
     
-    $city = z.common.get_cities()[0]
-    $city.get_collections()
+    city = z.common.get_cities()[0]
+    city.get_collections()
 
 Tests are written to give an idea on how the API works, do check them to get a clear understanding on how to use the sdk.
 
