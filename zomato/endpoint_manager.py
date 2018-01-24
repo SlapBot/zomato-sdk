@@ -13,7 +13,7 @@ class EndpointManager:
             'geocode': self.base_url + '/geocode',
             'location_details': self.base_url + '/location_details',
             'locations': self.base_url + '/locations',
-            'daily_menu': self.base_url + '/daily_menu',
+            'daily_menu': self.base_url + '/dailymenu',
             'restaurant': self.base_url + '/restaurant',
             'reviews': self.base_url + '/reviews',
             'search': self.base_url + '/search'
